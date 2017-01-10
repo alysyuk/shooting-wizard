@@ -16,7 +16,7 @@
 </ul>
 <div *ngIf="selectedHero">
     <h2>
-        {{selectedHero.name | uppercase}} is my hero
+        {{selectedHero.name | uppercase}} is my hero with {{selectedHero.power}} power
     </h2>
-    <button (click)="gotoDetail()">View Details</button>
+    <button (click)="gotoDetail()">View\Edit Details</button>
 </div>
