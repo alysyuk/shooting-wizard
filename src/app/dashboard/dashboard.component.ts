@@ -1,5 +1,7 @@
+import * as _ from 'lodash';
+
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Hero }        from '../hero/hero';
 import { HeroService } from '../hero/hero.service';
@@ -7,7 +9,7 @@ import { HeroService } from '../hero/hero.service';
 @Component({
     selector: 'my-dashboard',
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.css']
+    styleUrls: ['./dashboard.component.css'],
 })
 
 export class DashboardComponent implements OnInit {
@@ -16,13 +18,13 @@ export class DashboardComponent implements OnInit {
     constructor(
         private router: Router,
         private heroService: HeroService
-    ) {
-        
-    }
+    ) {}
 
     ngOnInit(): void {
         this.heroService.getHeroes()
-            .then(heroes => this.heroes = heroes.slice(1, 5));
+            .then(heroes => {
+                this.heroes = _.filter(heroes, (hero: any) => hero.power > 100);
+            });
     }
 
     gotoDetail(hero: Hero): void {
