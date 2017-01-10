@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Router } from '@angular/router';
 
-import { Hero }                from '../hero/hero';
-import { HeroService }         from '../hero/hero.service';
+import { Hero } from '../hero/hero';
+import { HeroService } from '../hero/hero.service';
 
 @Component({
     selector: 'my-heroes',
@@ -15,7 +15,7 @@ export class HeroesComponent implements OnInit {
 
     constructor(
         private heroService: HeroService,
-        private router: Router) { }
+        private router: Router) {}
 
     getHeroes(): void {
         this.heroService
@@ -38,7 +38,10 @@ export class HeroesComponent implements OnInit {
             .delete(hero.id)
             .then(() => {
                 this.heroes = this.heroes.filter(h => h !== hero);
-                if (this.selectedHero === hero) { this.selectedHero = null; }
+                if (this.selectedHero === hero)
+                {
+                    this.selectedHero = null;
+                }
             });
     }
 

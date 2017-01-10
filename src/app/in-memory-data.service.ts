@@ -5,8 +5,8 @@ export class InMemoryDataService implements InMemoryDbService {
         let heroes = [
             {id: 11, name: 'Mr. Nice', power:100},
             {id: 12, name: 'Narco', power:101},
-            {id: 13, name: 'Bombasto', power:102},
-            {id: 14, name: 'Celeritas', power:103},
+            {id: 13, name: 'Bombasto', power:42},
+            {id: 14, name: 'Celeritas', power:96},
             {id: 15, name: 'Magneta', power:104},
             {id: 16, name: 'RubberMan', power:105},
             {id: 17, name: 'Dynama', power:106},
