@@ -12,23 +12,34 @@ import { HeroService } from '../hero.service';
 
 export class HeroDetailComponent implements OnInit {
     hero: Hero;
+    heroPlaceHolder: Hero = {
+        id: null,
+        name: '',
+        power: null
+    };
 
     constructor(
         private heroService: HeroService,
-        private route: ActivatedRoute) {
-    }
+        private route: ActivatedRoute
+    ) {}
 
     ngOnInit(): void {
         this.route.params.forEach((params: Params) => {
             let id = +params['id'];
             this.heroService.getHero(id)
-                .then(hero => this.hero = hero);
+                .then(hero => this.hero = hero ? hero : this.heroPlaceHolder);
         });
     }
 
     onSubmit(): void {
-        this.heroService.update(this.hero)
-            .then(this.goBack);
+        if (this.hero.id) {
+            this.heroService.update(this.hero)
+                .then(this.goBack);
+        } else {
+            this.heroService.create(this.hero.name, this.hero.power)
+                .then(this.goBack);
+        }
+
     }
 
     goBack(): void {
