@@ -1,9 +1,6 @@
 <h2>My Heroes</h2>
 <div>
-    <label>Hero name:</label> <input #heroName />
-    <button (click)="add(heroName.value); heroName.value=''">
-        Add
-    </button>
+    <button (click)="gotoDetail();">Add a hero</button>
 </div>
 <ul class="heroes">
     <li *ngFor="let hero of heroes" (click)="onSelect(hero)"
@@ -18,5 +15,5 @@
     <h2>
         {{selectedHero.name | uppercase}} is my hero with {{selectedHero.power}} power
     </h2>
-    <button (click)="gotoDetail()">View\Edit Details</button>
+    <button (click)="gotoDetail(true)">View\Edit Details</button>
 </div>

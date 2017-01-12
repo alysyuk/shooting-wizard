@@ -23,16 +23,6 @@ export class HeroesComponent implements OnInit {
             .then(heroes => this.heroes = heroes);
     }
 
-    add(name: string): void {
-        name = name.trim();
-        if (!name) { return; }
-        this.heroService.create(name)
-            .then(hero => {
-                this.heroes.push(hero);
-                this.selectedHero = null;
-            });
-    }
-
     delete(hero: Hero): void {
         this.heroService
             .delete(hero.id)
@@ -53,7 +43,11 @@ export class HeroesComponent implements OnInit {
         this.selectedHero = hero;
     }
 
-    gotoDetail(): void {
-        this.router.navigate(['/detail', this.selectedHero.id]);
+    gotoDetail(isPresent: boolean): void {
+        if (isPresent){
+            this.router.navigate(['/detail', this.selectedHero.id]);
+        } else {
+            this.router.navigate(['create'])
+        }
     }
 }
