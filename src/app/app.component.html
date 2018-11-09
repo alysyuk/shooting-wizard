@@ -18,4 +18,11 @@
   </li>
 </ul>
 
-<router-outlet></router-outlet>
+<input id="file-upload"
+       type="file"
+       accept=".doc"
+       (change)="fileUpload($event)">
+
+<textarea rows="30" cols="50">{{fileText}}</textarea>
+
+<!--<router-outlet></router-outlet>-->

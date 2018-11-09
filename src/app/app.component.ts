@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'shooting-wizard';
+  public title = 'shooting-wizard';
+
+  public fileUpload(event) {
+    const me: any = this;
+    const reader = new FileReader();
+
+    reader.readAsText(event.srcElement.files[0]);
+    reader.onload = function () {
+      me.fileText = reader.result;
+    }
+  }
 }
