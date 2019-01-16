@@ -1,10 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<input id="file-upload"
-       type="file"
-       accept=".doc"
-       (change)="fileUpload($event)">
+<input
+  type="file"
+  accept=".txt,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+  (change)="fileUpload($event)"
+>
 
-<textarea rows="30" cols="50">{{fileText}}</textarea>
+<!--<textarea rows="30" cols="50">{{fileText}}</textarea>-->
+
+<mat-form-field>
+  <textarea
+    matInput
+    matTextareaAutosize
+    matAutosizeMinRows="30"
+    matAutosizeMaxRows="50"
+    (select)="selectionChange($event)"
+  >
+    {{fileText}}
+  </textarea>
+</mat-form-field>
 
 <!--<router-outlet></router-outlet>-->

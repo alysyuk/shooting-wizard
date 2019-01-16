@@ -6,15 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public title = 'shooting-wizard';
+  public fileText: string = '';
 
-  public fileUpload(event) {
+  private selectedText: string = '';
+
+  public fileUpload(event: any) {
     const me: any = this;
-    const reader = new FileReader();
+    const reader: FileReader = new FileReader();
 
     reader.readAsText(event.srcElement.files[0]);
-    reader.onload = function () {
-      me.fileText = reader.result;
-    }
+    reader.onload = () => me.fileText = reader.result;
+  }
+
+  public selectionChange(event: any) {
+    this.selectedText = event.target.value;
   }
 }
