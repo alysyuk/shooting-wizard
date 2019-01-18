@@ -11,9 +11,8 @@
 <mat-form-field>
   <textarea
     matInput
-    matTextareaAutosize
-    matAutosizeMinRows="30"
-    matAutosizeMaxRows="50"
+    rows="30"
+    cols="50"
     (select)="selectionChange($event)"
   >
     {{fileText}}
