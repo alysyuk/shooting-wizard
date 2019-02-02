@@ -36,6 +36,19 @@
   }
 }
 
+.scene-field {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  overflow: hidden;
+
+  .scene-field__row {
+    display: flex;
+    flex-grow: 1;
+    margin-right: 16px;
+  }
+}
+
 //::selection {
 //  color: gold;
 //  background-color: red;

@@ -7,6 +7,26 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public fileText: string | ArrayBuffer | null = null;
+  public panelOpenState = false;
+  // Temp mock
+  public sceneFields: string[] = [
+    '#123123',
+    '29/0917 - 07:00-14:00',
+    'Kitchen',
+    'Int.',
+    'FD',
+    'FT',
+    'Characters',
+    'Sound eq.',
+    'Lightning eq.',
+    'Props',
+    'Scene props',
+    'Makeup',
+    'Dresses',
+    'Prod design',
+    'Extras',
+    'VFX'
+  ];
 
   private selectedText: string = '';
 
