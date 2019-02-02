@@ -1,0 +1,42 @@
+.scene-select__textarea {
+  width: 350px;
+  position: relative;
+}
+
+.scene-select__overlay {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  height: 100%;
+  width: 100%;
+  background-color: #F0F1FE;
+  opacity: 0.5;
+}
+
+.scene-select__add-icon {
+  $font-color: #A8B4FD;
+
+  position: absolute;
+  bottom: 5%;
+  left: 25%;
+  display: flex;
+  align-items: center;
+  color: #A8B4FD;
+  font-size: 20px;
+  cursor: pointer;
+
+  .mat-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+  }
+
+  span {
+    text-decoration: underline;
+  }
+}
+
+//::selection {
+//  color: gold;
+//  background-color: red;
+//}

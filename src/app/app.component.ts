@@ -10,15 +10,18 @@ export class AppComponent {
 
   private selectedText: string = '';
 
-  public fileUpload(event: any) {
+  public fileUpload(event: any): void {
     const reader: FileReader = new FileReader();
 
     reader.readAsText(event.srcElement.files[0]);
     reader.onload = () => this.fileText = reader.result;
   }
 
-  public selectionChange(event: any) {
-    debugger;
+  public selectionChange(event: any): void {
     this.selectedText = event.target.value;
+  }
+
+  public isTextSelected(): boolean {
+    return !!window.getSelection().toString();
   }
 }
