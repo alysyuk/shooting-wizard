@@ -1,0 +1,24 @@
+<div class="scene-select">
+  <input
+    type="file"
+    accept=".txt,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    (change)="fileUpload($event)"
+  >
+
+  <mat-form-field class="scene-select__textarea">
+
+    <textarea disabled matInput rows="30" cols="50" (select)="selectionChange()">
+      {{textFile}}
+    </textarea>
+
+    <div *ngIf="isTextSelected()">
+      <div class="scene-select__overlay"></div>
+
+      <div class="scene-select__add-icon">
+        <mat-icon>add_circle_outline</mat-icon>
+        <span>Add scene</span>
+      </div>
+    </div>
+
+  </mat-form-field>
+</div>

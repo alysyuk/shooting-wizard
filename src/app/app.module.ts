@@ -4,7 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from '../shared/material.module';
+
 import { AppComponent } from './app.component';
+import { SceneSelectModule } from './scene-select/scene-select.module';
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    SceneSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

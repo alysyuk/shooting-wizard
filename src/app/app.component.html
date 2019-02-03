@@ -1,6 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
 <mat-accordion [multi]="true">
+
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title *ngFor="let sceneField of sceneFields">
@@ -15,44 +16,6 @@
     </div>
   </mat-expansion-panel>
 
-  <mat-action-row>test</mat-action-row>
-
-  <mat-expansion-panel expanded="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title [ngStyle]="{'width': '30%'}">
-        Scene
-      </mat-panel-title>
-      <mat-panel-title *ngFor="let sceneField of sceneFields">
-        {{sceneField}}
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-
-  </mat-expansion-panel>
 </mat-accordion>
 
-
-<div class="scene-select">
-
-  <input
-    type="file"
-    accept=".txt,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    (change)="fileUpload($event)"
-  >
-
-  <mat-form-field class="scene-select__textarea">
-
-    <textarea disabled matInput rows="30" cols="50" (select)="selectionChange($event)">
-      {{fileText}}
-    </textarea>
-
-    <div *ngIf="selectedText && isTextSelected()">
-      <div class="scene-select__overlay"></div>
-
-      <div class="scene-select__add-icon">
-        <mat-icon>add_circle_outline</mat-icon>
-        <span>Add scene</span>
-      </div>
-    </div>
-
-  </mat-form-field>
-</div>
+<app-scene-select (textSelected)="onTextSelected($event)"></app-scene-select>
