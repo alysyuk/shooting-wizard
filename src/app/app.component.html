@@ -1,18 +1,26 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<mat-accordion [multi]="true">
+<mat-accordion [multi]="true" >
 
-  <mat-expansion-panel>
+  <mat-expansion-panel (opened)="isEditMode = true" (closed)="isEditMode = false">
     <mat-expansion-panel-header>
+      <mat-panel-title class="scene-desc" *ngIf="isEditMode">
+        Scene
+      </mat-panel-title>
+
       <mat-panel-title *ngFor="let sceneField of sceneFields">
         {{sceneField}}
       </mat-panel-title>
     </mat-expansion-panel-header>
 
-    <div class="scene-field">
-      <div class="scene-field__row" *ngFor="let sceneField of sceneFields">
-        {{sceneField}} + date
+    <div class="scene-field" *ngIf="isEditMode">
+      <div class="scene-desc">
+        {{sceneSelected}}
       </div>
+
+      <!--<div class="scene-field__row" *ngFor="let sceneField of sceneFields">-->
+        <!--{{sceneField}} + some data-->
+      <!--</div>-->
     </div>
   </mat-expansion-panel>
 

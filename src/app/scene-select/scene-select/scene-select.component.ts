@@ -6,14 +6,16 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./scene-select.component.scss']
 })
 export class SceneSelectComponent implements OnInit {
+
   @Output() textSelected = new EventEmitter<string>();
 
   public textFile: string | ArrayBuffer | null = null;
 
+  private _textSelected: string = '';
+
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   public fileUpload(event: any): void {
     const reader: FileReader = new FileReader();
@@ -23,7 +25,11 @@ export class SceneSelectComponent implements OnInit {
   }
 
   public selectionChange(): void {
-    this.textSelected.emit(window.getSelection().toString());
+    this._textSelected = window.getSelection().toString();
+  }
+
+  public sendTextSelected(): void {
+    this.textSelected.emit(this._textSelected);
   }
 
   public isTextSelected(): boolean {

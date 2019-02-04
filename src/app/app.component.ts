@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   // Temp mock
-  public sceneFields: string[] = [
+  public readonly sceneFields: string[] = [
     '#123123',
     '29/0917 - 07:00-14:00',
     'Kitchen',
@@ -26,7 +26,17 @@ export class AppComponent {
     'VFX'
   ];
 
+  public sceneSelected: string = '';
+
   public onTextSelected(textSelected: string) {
+    this.sceneSelected = textSelected;
+  }
+
+  public isEditMode: boolean = false;
+
+  public test(data: any) {
     debugger;
   }
+
+
 }

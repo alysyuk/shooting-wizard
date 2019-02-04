@@ -14,7 +14,7 @@
     <div *ngIf="isTextSelected()">
       <div class="scene-select__overlay"></div>
 
-      <div class="scene-select__add-icon">
+      <div class="scene-select__add-icon" (click)="sendTextSelected()">
         <mat-icon>add_circle_outline</mat-icon>
         <span>Add scene</span>
       </div>
