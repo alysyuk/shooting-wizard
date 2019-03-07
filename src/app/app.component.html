@@ -1,29 +1,34 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<mat-accordion [multi]="true" >
+<div *ngFor="let scene of scenes">
+  <mat-accordion [multi]="true" >
 
-  <mat-expansion-panel (opened)="isEditMode = true" (closed)="isEditMode = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title class="scene-desc" *ngIf="isEditMode">
-        Scene
-      </mat-panel-title>
+    <mat-expansion-panel (opened)="isEditMode = true" (closed)="isEditMode = false">
+      <mat-expansion-panel-header>
+        <!--<mat-panel-title class="scene-desc" *ngIf="isEditMode">-->
+          <!--Scene-->
+        <!--</mat-panel-title>-->
 
-      <mat-panel-title *ngFor="let sceneField of sceneFields">
-        {{sceneField}}
-      </mat-panel-title>
-    </mat-expansion-panel-header>
+        <!--<mat-panel-title *ngFor="let sceneField of sceneFields">-->
+          <!--{{sceneField}}-->
+        <!--</mat-panel-title>-->
+        <mat-panel-title *ngFor="let sceneDetails of scene | keyvalue">
+          {{ sceneDetails.key | titlecase }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-    <div class="scene-field" *ngIf="isEditMode">
-      <div class="scene-desc">
-        {{sceneSelected}}
-      </div>
+      <!--<div class="scene-field" *ngIf="isEditMode">-->
+        <!--<div class="scene-desc">-->
+          <!--{{sceneSelected}}-->
+        <!--</div>-->
 
-      <!--<div class="scene-field__row" *ngFor="let sceneField of sceneFields">-->
-        <!--{{sceneField}} + some data-->
+        <!--<div class="scene-field__row" *ngFor="let sceneField of sceneFields">-->
+          <!--{{sceneField}} + some data-->
+        <!--</div>-->
       <!--</div>-->
-    </div>
-  </mat-expansion-panel>
+    </mat-expansion-panel>
 
-</mat-accordion>
+  </mat-accordion>
+</div>
 
 <app-scene-select (textSelected)="onTextSelected($event)"></app-scene-select>
