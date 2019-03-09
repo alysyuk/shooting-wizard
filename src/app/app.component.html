@@ -3,21 +3,22 @@
 <div *ngFor="let scene of scenes">
   <mat-accordion [multi]="true" >
 
-    <mat-expansion-panel (opened)="isEditMode = true" (closed)="isEditMode = false">
+    <mat-expansion-panel (opened)="toggleSceneEditMode()" (closed)="toggleSceneEditMode()">
       <mat-expansion-panel-header>
-        <!--<mat-panel-title class="scene-desc" *ngIf="isEditMode">-->
+        <!--<mat-panel-title class="scene-desc" *ngIf="isSceneEditMode">-->
           <!--Scene-->
         <!--</mat-panel-title>-->
 
-        <!--<mat-panel-title *ngFor="let sceneField of sceneFields">-->
-          <!--{{sceneField}}-->
-        <!--</mat-panel-title>-->
-        <mat-panel-title *ngFor="let sceneDetails of scene | keyvalue">
-          {{ sceneDetails.key | titlecase }}
+        <mat-panel-title *ngFor="let sceneDetails of scene | keyvalue : sortById">
+          {{ sceneDetails.key | titlecase }} : {{ sceneDetails.value }}
         </mat-panel-title>
+
+        <!--<mat-panel-title>-->
+          <!--{{ scene.characters | titlecase }}-->
+        <!--</mat-panel-title>-->
       </mat-expansion-panel-header>
 
-      <!--<div class="scene-field" *ngIf="isEditMode">-->
+      <!--<div class="scene-field" *ngIf="isSceneEditMode">-->
         <!--<div class="scene-desc">-->
           <!--{{sceneSelected}}-->
         <!--</div>-->

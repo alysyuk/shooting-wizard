@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
+import { BaseSceneModel } from '../shared/models/base-scene.model';
 import * as mocks from './mocks.json';
 
 @Component({
@@ -9,34 +10,21 @@ import * as mocks from './mocks.json';
 })
 export class AppComponent {
   // Temp mock
-  public readonly scenes: any[] = mocks.scenes;
-
-  public readonly sceneFields: string[] = [
-    '#123123',
-    '29/0917 - 07:00-14:00',
-    'Kitchen',
-    'Int.',
-    'FD',
-    'FT',
-    'Characters',
-    'Sound eq.',
-    'Lightning eq.',
-    'Props',
-    'Scene props',
-    'Makeup',
-    'Dresses',
-    'Prod design',
-    'Extras',
-    'VFX'
-  ];
-
+  public readonly scenes: BaseSceneModel[] = mocks.scenes;
   public sceneSelected: string = '';
+  public isSceneEditMode: boolean = false;
 
   public onTextSelected(textSelected: string) {
     this.sceneSelected = textSelected;
   }
 
-  public isEditMode: boolean = false;
+  public toggleSceneEditMode(): void {
+    this.isSceneEditMode = !this.isSceneEditMode;
+  }
+
+  public sortById(a: BaseSceneModel, b: BaseSceneModel): number {
+    return a.id > b.id ? -1 : (b.id > a.id ? 1 : 0);
+  };
 
   public test(data: any) {
     debugger;
