@@ -1,34 +1,45 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<div *ngFor="let scene of scenes">
-  <mat-accordion [multi]="true" >
+<h1>Shooting Wizard | Script editor</h1>
 
-    <mat-expansion-panel (opened)="toggleSceneEditMode()" (closed)="toggleSceneEditMode()">
+<div *ngFor="let scene of scenes">
+  <mat-accordion [multi]="true">
+    <mat-expansion-panel
+      (opened)="toggleSceneEditMode()"
+      (closed)="toggleSceneEditMode()"
+    >
       <mat-expansion-panel-header>
         <!--<mat-panel-title class="scene-desc" *ngIf="isSceneEditMode">-->
-          <!--Scene-->
+        <!--Scene-->
         <!--</mat-panel-title>-->
 
-        <mat-panel-title *ngFor="let sceneDetails of scene | keyvalue : sortById">
-          {{ sceneDetails.key | titlecase }} : {{ sceneDetails.value }}
+        <mat-panel-title
+          *ngFor="let sceneDetails of (scene | keyvalue: sortById)"
+        >
+          <span [ngClass]="{ 'font-red': !sceneDetails.value }">
+            {{
+              isNeededToShowValue(sceneDetails.key)
+                ? sceneDetails.value
+                : sceneDetails.key
+            }}
+          </span>
         </mat-panel-title>
 
         <!--<mat-panel-title>-->
-          <!--{{ scene.characters | titlecase }}-->
+        <!--{{ scene.characters | titlecase }}-->
         <!--</mat-panel-title>-->
       </mat-expansion-panel-header>
 
       <!--<div class="scene-field" *ngIf="isSceneEditMode">-->
-        <!--<div class="scene-desc">-->
-          <!--{{sceneSelected}}-->
-        <!--</div>-->
+      <!--<div class="scene-desc">-->
+      <!--{{sceneSelected}}-->
+      <!--</div>-->
 
-        <!--<div class="scene-field__row" *ngFor="let sceneField of sceneFields">-->
-          <!--{{sceneField}} + some data-->
-        <!--</div>-->
+      <!--<div class="scene-field__row" *ngFor="let sceneField of sceneFields">-->
+      <!--{{sceneField}} + some data-->
+      <!--</div>-->
       <!--</div>-->
     </mat-expansion-panel>
-
   </mat-accordion>
 </div>
 
