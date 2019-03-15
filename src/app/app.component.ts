@@ -8,7 +8,7 @@ import { BaseSceneModel } from '@shared/models/base-scene.model';
 import * as mocks from '@shared/models/mocks.json';
 import { GroupByFields } from '@shared/enums';
 
-interface IscenesGroupedBy {
+interface IScenesGroupedBy {
   location: string;
   data: BaseSceneModel[];
 }
@@ -20,7 +20,7 @@ interface IscenesGroupedBy {
 })
 export class AppComponent implements OnInit {
   // Temp mock
-  public scenesGroupedBy: IscenesGroupedBy[] = [];
+  public scenesGroupedBy: IScenesGroupedBy[] = [];
   public sceneSelected: string = '';
   public isSceneEditMode: boolean = false;
   public searchValue: string = '';

@@ -2,68 +2,70 @@
 
 <h1>Shooting Wizard | Script editor</h1>
 
-<mat-grid-list cols="8" rowHeight="70px">
-  <mat-grid-tile>
-    <mat-form-field class="example-form-field">
-      <input matInput type="text" placeholder="Quick search" [(ngModel)]="searchValue" />
-      <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue = ''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-  </mat-grid-tile>
+<div class="scenes">
+  <mat-grid-list cols="8" rowHeight="70px">
+    <mat-grid-tile>
+      <mat-form-field class="example-form-field">
+        <input matInput type="text" placeholder="Quick search" [(ngModel)]="searchValue" />
+        <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue = ''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </mat-grid-tile>
 
-  <mat-grid-tile>
-    <div>
-      Group by:
-      <span
-        (click)="sortScenesBy(groupByFieldsName)"
-        [ngClass]="{ bold: groupByFieldsName === activeSortingField }"
-        *ngFor="let groupByFieldsName of groupByFieldsNames"
-        >{{ groupByFieldsName }} |
-      </span>
-    </div>
-  </mat-grid-tile>
-</mat-grid-list>
-
-<div *ngIf="scenesGroupedBy.length !== 0">
-  <div *ngFor="let sceneGroupedBy of scenesGroupedBy">
-    <mat-accordion [multi]="false">
-      <div class="scene-location" *ngIf="activeSortingField === groupByFields.LOCATION">
-        - {{ !sceneGroupedBy.location ? 'No location added' : 'Location: ' + sceneGroupedBy.location }}
+    <mat-grid-tile>
+      <div>
+        Group by:
+        <span
+          (click)="sortScenesBy(groupByFieldsName)"
+          [ngClass]="{ bold: groupByFieldsName === activeSortingField }"
+          *ngFor="let groupByFieldsName of groupByFieldsNames"
+          >{{ groupByFieldsName }} |
+        </span>
       </div>
+    </mat-grid-tile>
+  </mat-grid-list>
 
-      <mat-expansion-panel
-        (opened)="toggleSceneEditMode()"
-        (closed)="toggleSceneEditMode()"
-        *ngFor="let sceneGroupedByDetails of sceneGroupedBy.data"
-      >
-        <mat-expansion-panel-header>
-          <!--<mat-panel-title class="scene-desc" *ngIf="isSceneEditMode">-->
-          <!--Scene-->
-          <!--</mat-panel-title>-->
-          <mat-panel-title *ngFor="let sceneDetails of (sceneGroupedByDetails | keyvalue: sortById)">
-            <span [ngClass]="{ 'font-red': !sceneDetails.value && sceneDetails.key !== 'location' }">
-              {{ isNeededToShowValue(sceneDetails.key) ? sceneDetails.value : sceneDetails.key }}
-              {{ sceneDetails.key === 'location' && !sceneDetails.value ? '+ Add' : '' }}
-            </span>
-          </mat-panel-title>
+  <div *ngIf="scenesGroupedBy.length !== 0">
+    <div *ngFor="let sceneGroupedBy of scenesGroupedBy">
+      <mat-accordion [multi]="false">
+        <div class="scene-location" *ngIf="activeSortingField === groupByFields.LOCATION">
+          - {{ !sceneGroupedBy.location ? 'No location added' : 'Location: ' + sceneGroupedBy.location }}
+        </div>
 
-          <!--<mat-panel-title>-->
-          <!--{{ scene.characters | titlecase }}-->
-          <!--</mat-panel-title>-->
-        </mat-expansion-panel-header>
+        <mat-expansion-panel
+          (opened)="toggleSceneEditMode()"
+          (closed)="toggleSceneEditMode()"
+          *ngFor="let sceneGroupedByDetails of sceneGroupedBy.data"
+        >
+          <mat-expansion-panel-header>
+            <!--<mat-panel-title class="scene-desc" *ngIf="isSceneEditMode">-->
+            <!--Scene-->
+            <!--</mat-panel-title>-->
+            <mat-panel-title *ngFor="let sceneDetails of (sceneGroupedByDetails | keyvalue: sortById)">
+              <span [ngClass]="{ 'font-red': !sceneDetails.value && sceneDetails.key !== 'location' }">
+                {{ isNeededToShowValue(sceneDetails.key) ? sceneDetails.value : sceneDetails.key }}
+                {{ sceneDetails.key === 'location' && !sceneDetails.value ? '+ Add' : '' }}
+              </span>
+            </mat-panel-title>
 
-        <!--<div class="scene-field" *ngIf="isSceneEditMode">-->
-        <!--<div class="scene-desc">-->
-        <!--{{sceneSelected}}-->
-        <!--</div>-->
+            <!--<mat-panel-title>-->
+            <!--{{ scene.characters | titlecase }}-->
+            <!--</mat-panel-title>-->
+          </mat-expansion-panel-header>
 
-        <!--<div class="scene-field__row" *ngFor="let sceneField of sceneFields">-->
-        <!--{{sceneField}} + some data-->
-        <!--</div>-->
-        <!--</div>-->
-      </mat-expansion-panel>
-    </mat-accordion>
+          <!--<div class="scene-field" *ngIf="isSceneEditMode">-->
+          <!--<div class="scene-desc">-->
+          <!--{{sceneSelected}}-->
+          <!--</div>-->
+
+          <!--<div class="scene-field__row" *ngFor="let sceneField of sceneFields">-->
+          <!--{{sceneField}} + some data-->
+          <!--</div>-->
+          <!--</div>-->
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
   </div>
 </div>
 
