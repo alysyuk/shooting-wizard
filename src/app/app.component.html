@@ -2,6 +2,21 @@
 
 <h1>Shooting Wizard | Script editor</h1>
 
+<mat-grid-list cols="8" rowHeight="70px">
+  <mat-grid-tile>
+    <mat-form-field class="example-form-field">
+      <input matInput type="text" placeholder="Quick search" [(ngModel)]="searchValue" />
+      <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue = ''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <div>Group by: Numbers | Locations</div>
+  </mat-grid-tile>
+</mat-grid-list>
+
 <div *ngIf="scenesGroupedByLocation.length !== 0">
   <div *ngFor="let sceneGroupedByLocation of scenesGroupedByLocation">
     <mat-accordion [multi]="false">

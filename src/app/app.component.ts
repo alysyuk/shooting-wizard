@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   public scenesGroupedByLocation: IScenesGroupedByLocation[] = [];
   public sceneSelected: string = '';
   public isSceneEditMode: boolean = false;
+  public searchValue: string = '';
 
   private fieldsToShowValue: string[] = ['id', 'date_time', 'location'];
 
