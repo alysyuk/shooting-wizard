@@ -13,27 +13,35 @@
   </mat-grid-tile>
 
   <mat-grid-tile>
-    <div>Group by: Numbers | Locations</div>
+    <div>
+      Group by:
+      <span
+        (click)="sortScenesBy(groupByFieldsName)"
+        [ngClass]="{ bold: groupByFieldsName === activeSortingField }"
+        *ngFor="let groupByFieldsName of groupByFieldsNames"
+        >{{ groupByFieldsName }} |
+      </span>
+    </div>
   </mat-grid-tile>
 </mat-grid-list>
 
-<div *ngIf="scenesGroupedByLocation.length !== 0">
-  <div *ngFor="let sceneGroupedByLocation of scenesGroupedByLocation">
+<div *ngIf="scenesGroupedBy.length !== 0">
+  <div *ngFor="let sceneGroupedBy of scenesGroupedBy">
     <mat-accordion [multi]="false">
-      <div class="scene-location">
-        - {{ !sceneGroupedByLocation.location ? 'No location added' : 'Location: ' + sceneGroupedByLocation.location }}
+      <div class="scene-location" *ngIf="activeSortingField === groupByFields.LOCATION">
+        - {{ !sceneGroupedBy.location ? 'No location added' : 'Location: ' + sceneGroupedBy.location }}
       </div>
 
       <mat-expansion-panel
         (opened)="toggleSceneEditMode()"
         (closed)="toggleSceneEditMode()"
-        *ngFor="let sceneGroupedByLocationDetails of sceneGroupedByLocation.data"
+        *ngFor="let sceneGroupedByDetails of sceneGroupedBy.data"
       >
         <mat-expansion-panel-header>
           <!--<mat-panel-title class="scene-desc" *ngIf="isSceneEditMode">-->
           <!--Scene-->
           <!--</mat-panel-title>-->
-          <mat-panel-title *ngFor="let sceneDetails of (sceneGroupedByLocationDetails | keyvalue: sortById)">
+          <mat-panel-title *ngFor="let sceneDetails of (sceneGroupedByDetails | keyvalue: sortById)">
             <span [ngClass]="{ 'font-red': !sceneDetails.value && sceneDetails.key !== 'location' }">
               {{ isNeededToShowValue(sceneDetails.key) ? sceneDetails.value : sceneDetails.key }}
               {{ sceneDetails.key === 'location' && !sceneDetails.value ? '+ Add' : '' }}

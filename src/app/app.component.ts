@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
 
-import { from, Observable } from 'rxjs';
+import { from } from 'rxjs';
 import { groupBy, mergeMap, toArray } from 'rxjs/operators';
 
-import { BaseSceneModel } from '../shared/models/base-scene.model';
-import * as mocks from '../shared/models/mocks.json';
+import { BaseSceneModel } from '@shared/models/base-scene.model';
+import * as mocks from '@shared/models/mocks.json';
+import { GroupByFields } from '@shared/enums';
 
-interface IScenesGroupedByLocation {
+interface IscenesGroupedBy {
   location: string;
   data: BaseSceneModel[];
 }
@@ -19,31 +20,41 @@ interface IScenesGroupedByLocation {
 })
 export class AppComponent implements OnInit {
   // Temp mock
-  public scenesGroupedByLocation: IScenesGroupedByLocation[] = [];
+  public scenesGroupedBy: IscenesGroupedBy[] = [];
   public sceneSelected: string = '';
   public isSceneEditMode: boolean = false;
   public searchValue: string = '';
+  public groupByFields: typeof GroupByFields = GroupByFields;
+  public groupByFieldsNames: string[] = [GroupByFields.NUMBER, GroupByFields.LOCATION];
+  public activeSortingField: GroupByFields = null;
 
   private fieldsToShowValue: string[] = ['id', 'date_time', 'location'];
 
   public ngOnInit(): void {
-    from(mocks.scenes)
-      .pipe(
-        groupBy((scene: BaseSceneModel) => scene.location),
-        mergeMap((scene) => scene.pipe(toArray())),
-      )
-      .subscribe((scenes: BaseSceneModel[]) => {
-        this.scenesGroupedByLocation.push({
-          location: scenes[0].location,
-          data: scenes,
-        });
-      });
-
-    this.scenesGroupedByLocation.sort((a, b) => (a.location > b.location ? 1 : b.location > a.location ? -1 : 0));
+    this.sortScenesBy(GroupByFields.LOCATION);
   }
 
   public onTextSelected(textSelected: string): void {
     this.sceneSelected = textSelected;
+  }
+
+  public sortScenesBy(sortBy: GroupByFields): void {
+    this.scenesGroupedBy = [];
+    this.activeSortingField = sortBy;
+
+    from(mocks.scenes)
+      .pipe(
+        groupBy((scene: BaseSceneModel) => scene[sortBy]),
+        mergeMap((scene) => scene.pipe(toArray())),
+      )
+      .subscribe((scenes: BaseSceneModel[]) => {
+        this.scenesGroupedBy.push({
+          location: scenes[0][sortBy],
+          data: scenes,
+        });
+      });
+
+    this.scenesGroupedBy.sort((a, b) => (a[sortBy] > b[sortBy] ? 1 : b[sortBy] > a[sortBy] ? -1 : 0));
   }
 
   public toggleSceneEditMode(): void {
