@@ -7,6 +7,11 @@ import { groupBy, mergeMap, toArray } from 'rxjs/operators';
 import { BaseSceneModel } from '../shared/models/base-scene.model';
 import * as mocks from '../shared/models/mocks.json';
 
+interface IScenesGroupedByLocation {
+  location: string;
+  data: BaseSceneModel[];
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,28 +19,27 @@ import * as mocks from '../shared/models/mocks.json';
 })
 export class AppComponent implements OnInit {
   // Temp mock
-  public readonly scenes: BaseSceneModel[] = mocks.scenes;
+  // public scenes: BaseSceneModel[] = mocks.scenes;
+  public scenesGroupedByLocation: IScenesGroupedByLocation[] = [];
   public sceneSelected: string = '';
   public isSceneEditMode: boolean = false;
 
   private fieldsToShowValue: string[] = ['id', 'date_time', 'location'];
 
   public ngOnInit(): void {
-    // this.scenes.filter();
-    let test: any = null;
-    // test.location: any = null;
-
     from(mocks.scenes)
       .pipe(
         groupBy((scene: BaseSceneModel) => scene.location),
         mergeMap((scene) => scene.pipe(toArray())),
       )
       .subscribe((scenes: BaseSceneModel[]) => {
-        console.log(scenes);
-        // test[scenes[0].location] = scenes;
+        this.scenesGroupedByLocation.push({
+          location: scenes[0].location,
+          data: scenes,
+        });
       });
 
-    console.log(test);
+    console.log(this.scenesGroupedByLocation);
   }
 
   public onTextSelected(textSelected: string): void {
