@@ -19,7 +19,6 @@ interface IScenesGroupedByLocation {
 })
 export class AppComponent implements OnInit {
   // Temp mock
-  // public scenes: BaseSceneModel[] = mocks.scenes;
   public scenesGroupedByLocation: IScenesGroupedByLocation[] = [];
   public sceneSelected: string = '';
   public isSceneEditMode: boolean = false;
@@ -39,7 +38,7 @@ export class AppComponent implements OnInit {
         });
       });
 
-    console.log(this.scenesGroupedByLocation);
+    this.scenesGroupedByLocation.sort((a, b) => (a.location > b.location ? 1 : b.location > a.location ? -1 : 0));
   }
 
   public onTextSelected(textSelected: string): void {

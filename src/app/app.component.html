@@ -5,9 +5,9 @@
 <div *ngIf="scenesGroupedByLocation.length !== 0">
   <div *ngFor="let sceneGroupedByLocation of scenesGroupedByLocation">
     <mat-accordion [multi]="false">
-      <span>
+      <div class="scene-location">
         - {{ !sceneGroupedByLocation.location ? 'No location added' : 'Location: ' + sceneGroupedByLocation.location }}
-      </span>
+      </div>
 
       <mat-expansion-panel
         (opened)="toggleSceneEditMode()"

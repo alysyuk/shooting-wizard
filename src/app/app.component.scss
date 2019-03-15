@@ -1,6 +1,6 @@
 .mat-expansion-panel-header-title {
   color: #fff;
-  border-right: 1px solid #97A6FF;
+  border-right: 1px solid #97a6ff;
 
   .mat-panel-title {
     font-size: 16px;
@@ -9,9 +9,17 @@
 }
 
 .mat-expansion-panel-header {
-  background-color: #A8B4FD !important;
+  background-color: #a8b4fd !important;
+}
+
+.mat-expansion-panel-header {
+  height: 35px !important;
 }
 
 .scene-desc {
   width: 20%;
+}
+
+.scene-location {
+  margin-top: 10px;
 }
