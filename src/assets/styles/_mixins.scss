@@ -1,0 +1,44 @@
+$spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right); // Leave this variable alone
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
+}
+
+//$sides: (top, bottom, left, right); // Leave this variable alone
+//
+//@mixin space($type:margin, $direction:all, $amount:$medium){
+//  @if $type == padding {
+//    @if $direction == all {
+//      padding: $amount;
+//    } @else if $direction == top {
+//      padding-top:$amount;
+//    } @else if $direction == left {
+//      padding-left:$amount;
+//    } @else if $direction == right {
+//      padding-right:$amount;
+//    } @else {
+//      padding-bottom:$amount;
+//    }
+//  } @else {
+//    @if $direction == all {
+//      margin: $amount;
+//    } @else if $direction == top {
+//      margin-top:$amount;
+//    } @else if $direction == left {
+//      margin-left:$amount;
+//    } @else if $direction == right {
+//      margin-right:$amount;
+//    } @else {
+//      margin-bottom:$amount;
+//    }
+//  }
+//}

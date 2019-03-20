@@ -70,4 +70,8 @@ export class AppComponent implements OnInit {
   public isNeededToShowValue(field: string): boolean {
     return this.fieldsToShowValue.includes(field);
   }
+
+  public editScene(scene: BaseSceneModel) {
+    // debugger;
+  }
 }
